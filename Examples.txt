@@ -1,0 +1,9 @@
+Social Messenger React - https://getstream.io/chat/demos/messaging/
+Chat app ASP.NET MVC - https://github.com/stackmanoj/chatapp
+
+ChatApp:
+	React Frontend - https://gitlab.com/asielalvarez/mychat.frontend
+	ASP.NET Backend - https://gitlab.com/asielalvarez/chatservice
+
+Služby:
+- Pusher
