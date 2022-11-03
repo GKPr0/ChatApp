@@ -13,6 +13,7 @@ export default observer(function RegisterForm() {
     const { register } = userStore;
 
     const validation = Yup.object<Record<keyof UserFormValues, Yup.AnySchema>>({
+        displayName: Yup.string().required(),
         username: Yup.string().required("Username is required.").trim(),
         email: Yup.string().required("Email is required.").email().trim(),
         password: Yup.string().required("Password is required.").min(8),
@@ -30,6 +31,7 @@ export default observer(function RegisterForm() {
             {({ handleSubmit, isSubmitting, errors, isValid, dirty }) => (
                 <Form className="ui form error" onSubmit={handleSubmit} autoComplete="off">
                     <Header as="h2" content="Register to ChatMeIn" color="blue" textAlign="center" />
+                    <MyTextInput name="displayName" placeholder="Display Name" />
                     <MyTextInput name="username" placeholder="Username" />
                     <MyTextInput name="email" placeholder="Email" />
                     <MyTextInput name="password" placeholder="Password" type="password" />

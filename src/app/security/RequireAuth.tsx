@@ -16,7 +16,6 @@ export default observer(function RequireAuth() {
             commonStore.setAppLoaded();
         }
     }, [commonStore, userStore]);
-
     if (!user)
         return <Navigate to="/" state={{ from: location }} replace />;
     else

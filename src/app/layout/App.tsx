@@ -7,6 +7,7 @@ import ChatDashboard from '../../features/chats/ChatDashboard';
 import NotFound from '../../features/errors/NotFound';
 import Unauthorized from '../../features/errors/Unauthorized';
 import WelcomePage from '../../features/home/WelcomePage';
+import ProfilePage from '../../features/profiles/ProfilePage';
 import ModalContainer from '../common/modals/ModalContainer';
 import RequireAuth from '../security/RequireAuth';
 import { useStore } from '../stores/store';
@@ -35,10 +36,14 @@ export default observer(function App() {
             <Routes>
                 <Route path="/" element={<WelcomePage />} />
                 <Route path="/" element={<Layout />}>
-                    <Route element={<RequireAuth />}/>
-                    <Route path="/chat" element={<ChatDashboard />} />
+                    <Route element={<RequireAuth />}>
+                        <Route path="/chat" element={<ChatDashboard />} />
+                    </Route>
+                    <Route element={<RequireAuth />}>
+                        <Route path="/profiles/:username" element={<ProfilePage />} />
+                    </Route>
                 </Route>
-              
+
                 <Route path="unauthorized" element={<Unauthorized />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>

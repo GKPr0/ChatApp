@@ -15,6 +15,7 @@ export default observer(function LoginForm() {
         email: Yup.string().email().required("E-mail is required").trim(),
         password: Yup.string().min(8).required("Password is required."),
         username: Yup.string().notRequired(),
+        displayName: Yup.string().notRequired(),
     });
 
     return (

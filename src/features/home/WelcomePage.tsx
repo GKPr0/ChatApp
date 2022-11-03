@@ -1,7 +1,7 @@
 import './styles.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Container, Header, Segment } from 'semantic-ui-react';
+import { Button, Container, Header, Segment, Image, Icon } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../app/stores/store';
 import RegisterForm from '../accounts/RegisterForm';
@@ -14,6 +14,7 @@ export default observer(function WelcomePage() {
         <Segment inverted textAlign="center" vertical className="mainPage">
             <Container text>
                 <Header as="h1" inverted>
+                    <Icon size="massive" name='rocketchat' alt="logo" style={{ marginBottom: 12 }} />
                     ChatMeIn
                 </Header>
 

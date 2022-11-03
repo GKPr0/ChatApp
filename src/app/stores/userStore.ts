@@ -14,16 +14,6 @@ export default class UserStore {
         return !!this.user;
     }
 
-    get role(): string {
-        if (this.user === null) return '';
-
-        let jwtData = this.user.token.split('.')[1];
-        let decodedJwtJsonData = window.atob(jwtData);
-        let decodedJwtData = JSON.parse(decodedJwtJsonData);
-
-        return decodedJwtData.role;
-    }
-
     setUser = (user: User | null) => {
         this.user = user;
     };
@@ -65,4 +55,16 @@ export default class UserStore {
             throw error;
         }
     };
+
+    setImage = (image: string) => {
+        if (this.user) {
+            this.user.image = image;
+        }
+    }
+
+    setDisplayName = (displayName: string) => {
+        if (this.user) {
+            this.user.displayName = displayName;
+        }
+    }
 }
