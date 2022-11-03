@@ -11,11 +11,7 @@ export default observer(function NavBar() {
     return (
         <Menu inverted fixed="top" secondary>
             <Container fluid>
-                <Menu.Item as={NavLink} to="/" header name="Teilemarkt" />
-                <Menu.Item as={NavLink} to="/components" name="Components" />
-                <Menu.Item as={NavLink} to="/variants" name="Component Variants" />
-                <Menu.Item as={NavLink} to="/requirements" name="Requirements" />
-                <Menu.Item as={NavLink} to="/administration" name="Administartion" />
+                <Menu.Item header name="ChatMeIn" />
                 <Menu.Item position="right">
                     <Dropdown pointing="top left" text={user?.username}>
                         <Dropdown.Menu>

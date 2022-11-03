@@ -18,7 +18,7 @@ export default observer(function WelcomePage() {
                 </Header>
 
                 {userStore.isLoggedIn ? (
-                    <Button as={Link} to="/dashboard" size="huge" inverted>
+                    <Button as={Link} to="/chat" size="huge" inverted>
                         Welcome {userStore.user !== null ? userStore.user.username : ''}
                     </Button>
                 ) : (
