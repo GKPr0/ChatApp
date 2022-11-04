@@ -1,9 +1,11 @@
+import { Photo } from "./photo";
+
 export interface User {
     email: string;
     username: string;
     displayName: string;
     token: string;
-    image?: string;
+    photo?: Photo;
 }
 
 export interface UserFormValues {

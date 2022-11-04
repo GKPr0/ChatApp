@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import agent from '../api/agent';
+import { Photo } from '../models/photo';
 import { User, UserFormValues } from '../models/user';
 import { store } from './store';
 
@@ -56,9 +57,9 @@ export default class UserStore {
         }
     };
 
-    setImage = (image: string) => {
+    setPhoto = (photo: Photo) => {
         if (this.user) {
-            this.user.image = image;
+            this.user.photo = photo;
         }
     }
 

@@ -25,29 +25,27 @@ export default function PhotoUploadWidget({ loading, uploadPhoto }: Props) {
     }, [files])
 
     return (
-        <Grid>
-            <Grid.Column width={4}>
+        <Grid stackable container padded relaxed columns={3}>
+            <Grid.Column textAlign="center">
                 <Header color="blue" sub content="Step 1 - Add Photo" />
                 <PhotoDropZoneWidget setFiles={setFiles} />
             </Grid.Column>
-            <Grid.Column width={1} />
-            <Grid.Column width={4}>
+            <Grid.Column textAlign="center">
                 <Header color="blue" sub content="Step 2 - Resize image" />
                 {files && files.length > 0 && (
                     <PhotoCropperWidget setCropper={setCropper} imagePreview={files[0].preview} />
                 )}
             </Grid.Column>
-            <Grid.Column width={1} />
-            <Grid.Column width={4}>
+            <Grid.Column textAlign="center">
                 <Header color="blue" sub content="Step 3 - Preview & Upload" />
                 {files && files.length > 0 &&
-                    <>
-                        <div className="img-preview" style={{ minHeight: 200, minWidth: 200, overflow: "hidden" }} />
+                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
+                        <div className="img-preview" style={{ minHeight: 200, minWidth: 200, overflow: "hidden"}} />
                         <Button.Group widths={2}>
                             <Button positive icon="check" onClick={onCrop} loading={loading} />
                             <Button icon="close" onClick={() => setFiles([])} disabled={loading}/>
                         </Button.Group>
-                    </>
+                    </div>
                 }
             </Grid.Column>
         </Grid>

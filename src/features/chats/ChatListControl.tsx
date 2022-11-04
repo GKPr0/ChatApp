@@ -7,10 +7,10 @@ export default function ChatListControl() {
   const { modalStore } = useStore();
 
   return (
-    <Input type="text" placeholder='Find new people...' icon="user" action >
+    <Input type="text" placeholder='Find new people...' icon="user" action  fluid>
       <input />
       <Button type='submit' icon="user" color='blue' />
-      <Button icon="group" color='blue' onClick={() => modalStore.openModal(<GroupForm />)} />
+      <Button type='submit' icon="group" color='blue' onClick={() => modalStore.openModal(<GroupForm />)} />
     </Input>
   )
 }

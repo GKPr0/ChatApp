@@ -1,14 +1,13 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import { Photo, Profile } from "../models/profile";
+import { Profile, ProfileFormValues } from "../models/profile";
 import agent from "../api/agent";
 import { store } from "./store";
 
 export default class ProfileStore {
     profile: Profile | null = null;
     loadingProfile: boolean = false;
-    uploadingPhoto: boolean = false;
-    deletingPhoto: boolean = false;
-    settingMainPhoto: boolean = false;
+    settingPhoto: boolean = false;
+
 
     constructor() {
         makeAutoObservable(this);
@@ -29,18 +28,9 @@ export default class ProfileStore {
         this.loadingProfile = loading;
     }
 
-    setUploadingPhoto(uploading: boolean) {
-        this.uploadingPhoto = uploading;
+    setSettingPhoto(settingPhoto: boolean) {
+        this.settingPhoto = settingPhoto;
     }
-
-    setDeletingPhoto(deletingPhoto: boolean) {
-        this.deletingPhoto = deletingPhoto;
-    }
-
-    setSettingMainPhoto(settingMainPhoto: boolean) {
-        this.settingMainPhoto = settingMainPhoto;
-    }
-
 
     loadProfile = async (username: string) => {
         this.setLoadingProfile(true);
@@ -53,7 +43,7 @@ export default class ProfileStore {
         this.setLoadingProfile(false);
     }
 
-    editProfile = async (profile: Partial<Profile>) => {
+    editProfile = async (profile: ProfileFormValues) => {
         try {
             await agent.Profiles.edit(profile);
             runInAction(() => {
@@ -67,23 +57,20 @@ export default class ProfileStore {
         }
     }
 
-    uploadPhoto = async (file: Blob) => {
-        this.setUploadingPhoto(true);
+    setPhoto = async (file: Blob) => {
+        this.setSettingPhoto(true);
         try {
-            const photo = await agent.Profiles.uploadPhoto(file);
+            const photo = await agent.Profiles.setPhoto(file);
             runInAction(() => {
                 if (this.profile) {
-                    this.profile.photos?.push(photo);
-                    if (photo.isMain && store.userStore.user) {
-                        store.userStore.setImage(photo.url);
-                        this.profile.image = photo.url;
-                    }
+                    this.profile.photo = photo;
+                    store.userStore.setPhoto(photo);
                 }
             });
         } catch (err) {
             console.error(err);
         }
-        this.setUploadingPhoto(false);
+        this.setSettingPhoto(false);
     }
 
 }

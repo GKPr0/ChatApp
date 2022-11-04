@@ -1,11 +1,17 @@
+import { Photo } from "./photo";
 import { User } from "./user";
 
 export interface Profile {
     username: string;
     displayName: string;
-    image?: string;
     bio?: string;
-    photos?: Photo[];
+    photo?: Photo;
+}
+
+export interface ProfileFormValues{
+    username: string;
+    displayName: string;
+    bio?: string;
 }
 
 
@@ -13,12 +19,8 @@ export class Profile implements Profile {
     constructor(user: User){
         this.username = user.username;
         this.displayName = user.displayName;
-        this.image = user.image;
+        this.photo = user.photo;
     }
 }
 
-export interface Photo{
-    id: string;
-    url: string;
-    isMain: boolean;
-}
+

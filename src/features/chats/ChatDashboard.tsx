@@ -5,7 +5,7 @@ import ChatList from './ChatList'
 
 export default function ChatDashboard() {
   return (
-    <Grid style={{height: "100vh"}}>  
+    <Grid style={{height: "100vh"}} stackable>  
       <Grid.Column width={4}>
         <ChatList/>
       </Grid.Column>

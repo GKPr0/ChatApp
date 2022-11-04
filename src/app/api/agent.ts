@@ -1,10 +1,11 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
-import { Photo, Profile } from '../models/profile';
+import { Photo } from '../models/photo';
+import { Profile, ProfileFormValues } from '../models/profile';
 import { User, UserFormValues } from '../models/user';
 import { store } from '../stores/store';
 
-axios.defaults.baseURL = 'https://localhost:7166/api';
+axios.defaults.baseURL = 'http://localhost:5166/api';
 
 axios.interceptors.request.use((config) => {
     const token = store.commonStore.token;
@@ -70,12 +71,12 @@ const Account = {
 };
 
 const Profiles = {
-    get: (username: string) => requests.get<Profile>(`/profiles/${username}`),
-    edit: (profile: Partial<Profile>) => requests.put<void>(`/profiles`, profile),
-    uploadPhoto: (photo: Blob) => {
+    get: (username: string) => requests.get<Profile>(`/profile/${username}`),
+    edit: (profile: ProfileFormValues) => requests.put<void>(`/profile`, profile),
+    setPhoto: (photo: Blob) => {
         let formData = new FormData();
         formData.append('File', photo);
-        return axios.post<Photo>("photos", formData, {
+        return axios.post<Photo>("/profile/photo", formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
         }).then(responseBody);
     }
